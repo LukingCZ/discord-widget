@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.discord-widget {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #3a1c71, #d76d77, #ffaf7b);
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.info {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.stats {
+  font-size: 13px;
+}
+
+.online {
+  color: #00ff88;
+}
+
+.join-btn {
+  background: #5865f2;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<div class="discord-widget">
+  <img class="avatar" src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+  
+  <div class="info">
+    <div class="name">Načítám...</div>
+    <div class="stats"></div>
+  </div>
+
+  <a href="https://discord.gg/TVOJLINK" target="_blank" class="join-btn">
+    Join
+  </a>
+</div>
+
+<script>
+fetch("https://discord.com/api/guilds/TVOJE_ID/widget.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector(".name").textContent = data.name;
+    document.querySelector(".stats").innerHTML = 
+      `${data.presence_count} online`;
+  });
+</script>
+
+</body>
+</html>
